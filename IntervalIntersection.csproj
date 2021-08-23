@@ -1,0 +1,24 @@
+public class Solution {   
+    public int[][] IntervalIntersection(int[][] firstList, int[][] secondList) {
+        int f=0; //указатель на 1 массив
+        int s=0; //указатель на 2 массив
+        ArrayList mergInt = new ArrayList();
+        while (f<firstList.Length && s<secondList.Length ){
+            int maxA=Math.Max(firstList[f][0],secondList[s][0]);
+            int minB=Math.Min(firstList[f][1],secondList[s][1]);
+            if (maxA<=minB) {
+                mergInt.Add(new int[]{maxA,minB});
+            }
+            
+            if (firstList[f][1]<secondList[s][1]){                
+                f++;
+            }
+            else {s++;}                        
+        }
+        int [][] res = new int[mergInt.Count][];
+            for (int i=0;i<mergInt.Count;i++){
+                res[i] = (int[])mergInt[i];
+            }
+        return res;   
+    }
+}
